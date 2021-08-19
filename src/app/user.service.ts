@@ -7,12 +7,12 @@ import { User } from './user.model';
   providedIn: 'root'
 })
 export class UserService {
-  private _currentUser: BehaviorSubject<User> = new BehaviorSubject({} as User);
-  public readonly currentUser: Observable<User> = this._currentUser.asObservable();
+  private currentUserSubject: BehaviorSubject<User> = new BehaviorSubject({} as User);
+  public readonly currentUser: Observable<User> = this.currentUserSubject.asObservable();
 
   constructor() { }
 
   setCurrentUser(currentUser: User): void {
-    this._currentUser.next(currentUser);
+    this.currentUserSubject.next(currentUser);
   }
 }
